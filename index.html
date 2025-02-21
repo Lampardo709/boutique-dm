@@ -5,13 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BOUTIQUE DM</title>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; background-color: #f8f8f8; }
-        header { background-color: black; color: gold; padding: 20px; font-size: 24px; }
-        .container { margin: 20px auto; max-width: 800px; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); }
-        .product { margin: 15px; padding: 10px; border: 1px solid #ddd; border-radius: 8px; }
-        .buy-button { display: block; margin: 10px auto; padding: 10px; background: gold; color: black; border: none; border-radius: 5px; cursor: pointer; }
-        footer { margin-top: 20px; padding: 10px; background: black; color: white; }
-        .cart { margin: 20px auto; padding: 20px; max-width: 800px; background: #fff; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); }
+        body { font-family: Arial, sans-serif; background-color: #f8f8f8; margin: 0; padding: 0; }
+        header { background-color: black; color: gold; padding: 20px; font-size: 28px; text-align: center; font-weight: bold; }
+        .container { margin: 20px auto; max-width: 1000px; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); text-align: center; }
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; padding: 20px; }
+        .product { padding: 15px; background: #fff; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); }
+        .buy-button { margin-top: 10px; padding: 10px 15px; background: gold; color: black; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
+        .buy-button:hover { background: darkgoldenrod; }
+        footer { margin-top: 30px; padding: 15px; background: black; color: white; text-align: center; font-size: 14px; }
+        img { max-width: 100px; margin-bottom: 10px; }
     </style>
     <script>
         let cart = [];
@@ -60,19 +62,22 @@
 </head>
 <body>
     <header>
+        <img src="./logo.png" alt="Logo Boutique DM">
         BOUTIQUE DM
     </header>
     <div class="container">
         <h2>Nos Produits</h2>
-        <div class="product">Vêtements <button class="buy-button" onclick="orderProduct('Vêtements')">Acheter</button></div>
-        <div class="product">Cosmétiques <button class="buy-button" onclick="orderProduct('Cosmétiques')">Acheter</button></div>
-        <div class="product">Accessoires <button class="buy-button" onclick="orderProduct('Accessoires')">Acheter</button></div>
-        <div class="product">Chaussures <button class="buy-button" onclick="orderProduct('Chaussures')">Acheter</button></div>
-        <div class="product">Perruques <button class="buy-button" onclick="orderProduct('Perruques')">Acheter</button></div>
-        <div class="product">Mèches <button class="buy-button" onclick="orderProduct('Mèches')">Acheter</button></div>
+        <div class="product-grid">
+            <div class="product"> <img src="./vetements.png" alt="Vêtements"> Vêtements <button class="buy-button" onclick="orderProduct('Vêtements')">Acheter</button></div>
+            <div class="product"> <img src="./cosmetiques.png" alt="Cosmétiques"> Cosmétiques <button class="buy-button" onclick="orderProduct('Cosmétiques')">Acheter</button></div>
+            <div class="product"> <img src="./accessoires.png" alt="Accessoires"> Accessoires <button class="buy-button" onclick="orderProduct('Accessoires')">Acheter</button></div>
+            <div class="product"> <img src="./chaussures.png" alt="Chaussures"> Chaussures <button class="buy-button" onclick="orderProduct('Chaussures')">Acheter</button></div>
+            <div class="product"> <img src="./perruques.png" alt="Perruques"> Perruques <button class="buy-button" onclick="orderProduct('Perruques')">Acheter</button></div>
+            <div class="product"> <img src="./meches.png" alt="Mèches"> Mèches <button class="buy-button" onclick="orderProduct('Mèches')">Acheter</button></div>
+        </div>
     </div>
     
-    <div class="cart">
+    <div class="container">
         <h2>Panier</h2>
         <ul id="cart-items"></ul>
         <button class="buy-button" onclick="checkout()">Passer la commande</button>
