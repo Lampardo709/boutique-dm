@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOUTIQUE DM</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; background-color: #f8f8f8; }
+        header { background-color: black; color: gold; padding: 20px; font-size: 24px; }
+        .container { margin: 20px auto; max-width: 800px; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); }
+        .product { margin: 15px; padding: 10px; border: 1px solid #ddd; border-radius: 8px; }
+        .buy-button { display: block; margin: 10px auto; padding: 10px; background: gold; color: black; border: none; border-radius: 5px; cursor: pointer; }
+        footer { margin-top: 20px; padding: 10px; background: black; color: white; }
+        .cart { margin: 20px auto; padding: 20px; max-width: 800px; background: #fff; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); }
+    </style>
+    <script>
+        let cart = [];
+        
+        function orderProduct(product) {
+            cart.push(product);
+            updateCart();
+            alert(product + ' ajouté au panier !');
+        }
+        
+        function updateCart() {
+            let cartList = document.getElementById('cart-items');
+            cartList.innerHTML = '';
+            cart.forEach((item, index) => {
+                let li = document.createElement('li');
+                li.textContent = item;
+                let removeButton = document.createElement('button');
+                removeButton.textContent = 'Retirer';
+                removeButton.onclick = function() { removeFromCart(index); };
+                li.appendChild(removeButton);
+                cartList.appendChild(li);
+            });
+        }
+        
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCart();
+        }
+        
+        function checkout() {
+            if (cart.length === 0) {
+                alert('Votre panier est vide !');
+                return;
+            }
+            let customerName = prompt('Entrez votre nom :');
+            let customerAddress = prompt('Entrez votre adresse de livraison :');
+            if (customerName && customerAddress) {
+                alert('Commande passée avec succès !\nNom: ' + customerName + '\nAdresse: ' + customerAddress);
+                cart = [];
+                updateCart();
+            } else {
+                alert('Veuillez remplir toutes les informations pour passer la commande.');
+            }
+        }
+    </script>
+</head>
+<body>
+    <header>
+        BOUTIQUE DM
+    </header>
+    <div class="container">
+        <h2>Nos Produits</h2>
+        <div class="product">Vêtements <button class="buy-button" onclick="orderProduct('Vêtements')">Acheter</button></div>
+        <div class="product">Cosmétiques <button class="buy-button" onclick="orderProduct('Cosmétiques')">Acheter</button></div>
+        <div class="product">Accessoires <button class="buy-button" onclick="orderProduct('Accessoires')">Acheter</button></div>
+        <div class="product">Chaussures <button class="buy-button" onclick="orderProduct('Chaussures')">Acheter</button></div>
+        <div class="product">Perruques <button class="buy-button" onclick="orderProduct('Perruques')">Acheter</button></div>
+        <div class="product">Mèches <button class="buy-button" onclick="orderProduct('Mèches')">Acheter</button></div>
+    </div>
+    
+    <div class="cart">
+        <h2>Panier</h2>
+        <ul id="cart-items"></ul>
+        <button class="buy-button" onclick="checkout()">Passer la commande</button>
+    </div>
+    
+    <footer>
+        Contact : dkikumba@gmail.com | +243818562531 <br>
+        Modes de paiement : Mobile Money, Paiement à la livraison
+    </footer>
+</body>
+</html>
