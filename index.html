@@ -5,37 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BOUTIQUE DM</title>
     <style>
-        body { font-family: Arial, sans-serif; background-color: #f8f8f8; margin: 0; padding: 0; }
+        body { font-family: Arial, sans-serif; background-color: #f5f5f5; margin: 0; padding: 0; }
         header { background-color: black; color: gold; padding: 20px; font-size: 28px; text-align: center; font-weight: bold; }
-        .container { margin: 20px auto; max-width: 1000px; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); text-align: center; }
-        .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; padding: 20px; }
-        .product { padding: 15px; background: #fff; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); }
-        .buy-button { margin-top: 10px; padding: 10px 15px; background: gold; color: black; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
-        .buy-button:hover { background: darkgoldenrod; }
-        footer { margin-top: 30px; padding: 15px; background: black; color: white; text-align: center; font-size: 14px; }
-        img { max-width: 100px; margin-bottom: 10px; }
+        .container { margin: 20px auto; max-width: 1200px; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); text-align: center; }
+        .category-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; padding: 20px; }
+        .category { padding: 20px; background: gold; color: black; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); cursor: pointer; font-size: 18px; font-weight: bold; transition: 0.3s; }
+        .category:hover { background: darkgoldenrod; color: white; transform: scale(1.05); }
+        .product-grid { display: none; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; padding: 20px; justify-content: center; }
+        .product { padding: 15px; background: white; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); transition: 0.3s; }
+        .product:hover { transform: translateY(-5px); box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); }
+        .buy-button, .remove-button { margin-top: 10px; padding: 10px 15px; background: black; color: gold; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; transition: 0.3s; }
+        .buy-button:hover, .remove-button:hover { background: gold; color: black; transform: scale(1.05); }
+        footer { margin-top: 30px; padding: 20px; background: black; color: white; text-align: center; font-size: 16px; }
+        img { max-width: 100%; height: auto; border-radius: 8px; }
+        .cart { margin-top: 20px; padding: 20px; background: white; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); }
+        .cart-item { display: flex; justify-content: space-between; padding: 10px; border-bottom: 1px solid #ddd; }
     </style>
     <script>
         let cart = [];
         
-        function orderProduct(product) {
-            cart.push(product);
-            updateCart();
-            alert(product + ' ajouté au panier !');
+        function showCategory(category) {
+            document.querySelectorAll('.product-grid').forEach(grid => grid.style.display = 'none');
+            document.getElementById(category).style.display = 'grid';
         }
         
-        function updateCart() {
-            let cartList = document.getElementById('cart-items');
-            cartList.innerHTML = '';
-            cart.forEach((item, index) => {
-                let li = document.createElement('li');
-                li.textContent = item;
-                let removeButton = document.createElement('button');
-                removeButton.textContent = 'Retirer';
-                removeButton.onclick = function() { removeFromCart(index); };
-                li.appendChild(removeButton);
-                cartList.appendChild(li);
-            });
+        function addToCart(product, price) {
+            cart.push({ product, price });
+            updateCart();
         }
         
         function removeFromCart(index) {
@@ -43,49 +39,43 @@
             updateCart();
         }
         
-        function checkout() {
-            if (cart.length === 0) {
-                alert('Votre panier est vide !');
-                return;
-            }
-            let customerName = prompt('Entrez votre nom :');
-            let customerAddress = prompt('Entrez votre adresse de livraison :');
-            if (customerName && customerAddress) {
-                alert('Commande passée avec succès !\nNom: ' + customerName + '\nAdresse: ' + customerAddress);
-                cart = [];
-                updateCart();
-            } else {
-                alert('Veuillez remplir toutes les informations pour passer la commande.');
-            }
+        function updateCart() {
+            let cartContainer = document.getElementById('cart-items');
+            cartContainer.innerHTML = '';
+            cart.forEach((item, index) => {
+                let cartItem = document.createElement('div');
+                cartItem.classList.add('cart-item');
+                cartItem.innerHTML = `
+                    <span>${item.product} - ${item.price} FC</span>
+                    <button class="remove-button" onclick="removeFromCart(${index})">Retirer</button>
+                `;
+                cartContainer.appendChild(cartItem);
+            });
         }
     </script>
 </head>
 <body>
     <header>
-        <img src="./logo.png" alt="Logo Boutique DM">
-        BOUTIQUE DM
+        <img src="./logo.png" alt="Logo Boutique DM" style="max-width: 120px;">
+        <h1>BOUTIQUE DM</h1>
     </header>
     <div class="container">
-        <h2>Nos Produits</h2>
-        <div class="product-grid">
-            <div class="product"> <img src="./vetements.png" alt="Vêtements"> Vêtements <button class="buy-button" onclick="orderProduct('Vêtements')">Acheter</button></div>
-            <div class="product"> <img src="./cosmetiques.png" alt="Cosmétiques"> Cosmétiques <button class="buy-button" onclick="orderProduct('Cosmétiques')">Acheter</button></div>
-            <div class="product"> <img src="./accessoires.png" alt="Accessoires"> Accessoires <button class="buy-button" onclick="orderProduct('Accessoires')">Acheter</button></div>
-            <div class="product"> <img src="./chaussures.png" alt="Chaussures"> Chaussures <button class="buy-button" onclick="orderProduct('Chaussures')">Acheter</button></div>
-            <div class="product"> <img src="./perruques.png" alt="Perruques"> Perruques <button class="buy-button" onclick="orderProduct('Perruques')">Acheter</button></div>
-            <div class="product"> <img src="./meches.png" alt="Mèches"> Mèches <button class="buy-button" onclick="orderProduct('Mèches')">Acheter</button></div>
+        <h2>Nos Catégories</h2>
+        <div class="category-grid">
+            <div class="category" onclick="showCategory('vetements')">Vêtements</div>
+            <div class="category" onclick="showCategory('chaussures')">Chaussures</div>
+            <div class="category" onclick="showCategory('perruques')">Perruques</div>
+            <div class="category" onclick="showCategory('accessoires')">Accessoires</div>
+            <div class="category" onclick="showCategory('cosmetiques')">Cosmétiques</div>
         </div>
     </div>
-    
-    <div class="container">
+    <div class="cart container">
         <h2>Panier</h2>
-        <ul id="cart-items"></ul>
-        <button class="buy-button" onclick="checkout()">Passer la commande</button>
+        <div id="cart-items"></div>
     </div>
-    
     <footer>
-        Contact : dkikumba@gmail.com | +243818562531 <br>
-        Modes de paiement : Mobile Money, Paiement à la livraison
+        <p>Contact : dkikumba@gmail.com | +243818562531</p>
+        <p>Modes de paiement : Mobile Money (M-Pesa) | Airtel Money - Numéro : +243987995622</p>
     </footer>
 </body>
 </html>
