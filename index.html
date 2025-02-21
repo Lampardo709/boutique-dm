@@ -14,43 +14,15 @@
         .product-grid { display: none; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; padding: 20px; justify-content: center; }
         .product { padding: 15px; background: white; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); transition: 0.3s; }
         .product:hover { transform: translateY(-5px); box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); }
-        .buy-button, .remove-button { margin-top: 10px; padding: 10px 15px; background: black; color: gold; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; transition: 0.3s; }
-        .buy-button:hover, .remove-button:hover { background: gold; color: black; transform: scale(1.05); }
+        .buy-button { margin-top: 10px; padding: 10px 15px; background: black; color: gold; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; transition: 0.3s; }
+        .buy-button:hover { background: gold; color: black; transform: scale(1.05); }
         footer { margin-top: 30px; padding: 20px; background: black; color: white; text-align: center; font-size: 16px; }
         img { max-width: 100%; height: auto; border-radius: 8px; }
-        .cart { margin-top: 20px; padding: 20px; background: white; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); }
-        .cart-item { display: flex; justify-content: space-between; padding: 10px; border-bottom: 1px solid #ddd; }
     </style>
     <script>
-        let cart = [];
-        
         function showCategory(category) {
             document.querySelectorAll('.product-grid').forEach(grid => grid.style.display = 'none');
             document.getElementById(category).style.display = 'grid';
-        }
-        
-        function addToCart(product, price) {
-            cart.push({ product, price });
-            updateCart();
-        }
-        
-        function removeFromCart(index) {
-            cart.splice(index, 1);
-            updateCart();
-        }
-        
-        function updateCart() {
-            let cartContainer = document.getElementById('cart-items');
-            cartContainer.innerHTML = '';
-            cart.forEach((item, index) => {
-                let cartItem = document.createElement('div');
-                cartItem.classList.add('cart-item');
-                cartItem.innerHTML = `
-                    <span>${item.product} - ${item.price} FC</span>
-                    <button class="remove-button" onclick="removeFromCart(${index})">Retirer</button>
-                `;
-                cartContainer.appendChild(cartItem);
-            });
         }
     </script>
 </head>
@@ -68,11 +40,15 @@
             <div class="category" onclick="showCategory('accessoires')">Accessoires</div>
             <div class="category" onclick="showCategory('cosmetiques')">Cosmétiques</div>
         </div>
+        
+        <div id="chaussures" class="product-grid">
+            <div class="product"> <img src="./chaussure_noire.png" alt="Chaussure Noire"> <p>Chaussure Noire - 70 000 FC</p> <button class="buy-button">Acheter</button></div>
+            <div class="product"> <img src="./chaussure_blanche.png" alt="Chaussure Blanche"> <p>Chaussure Blanche - 60 000 FC</p> <button class="buy-button">Acheter</button></div>
+            <div class="product"> <img src="./pantalon_cargo.png" alt="Pantalon Cargo"> <p>Pantalon Cargo - 55 000 FC</p> <button class="buy-button">Acheter</button></div>
+            <div class="product"> <img src="./chaussure_luxe.png" alt="Chaussure de Luxe"> <p>Chaussure de Luxe - 190 000 FC</p> <button class="buy-button">Acheter</button></div>
+        </div>
     </div>
-    <div class="cart container">
-        <h2>Panier</h2>
-        <div id="cart-items"></div>
-    </div>
+    
     <footer>
         <p>Contact : dkikumba@gmail.com | +243818562531</p>
         <p>Modes de paiement : Mobile Money (M-Pesa) | Airtel Money - Numéro : +243987995622</p>
