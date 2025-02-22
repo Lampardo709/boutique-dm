@@ -19,41 +19,7 @@
         .cart-items { list-style: none; padding: 0; }
         .cart-items li { margin: 10px 0; font-size: 16px; }
         footer { margin-top: 30px; padding: 20px; background: black; color: white; text-align: center; font-size: 16px; }
-        img { max-width: 100%; height: auto; border-radius: 8px; transition: transform 0.3s ease-in-out; }
-        img:hover { transform: scale(1.1); }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        @keyframes slideIn {
-            from { transform: translateY(20px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
     </style>
-</head>
-<body>
-    <header>
-        <h1>BOUTIQUE DM</h1>
-    </header>
-    <div class="container">
-        <h2>Nos Catégories</h2>
-        <div class="category-grid">
-            <div class="category" onclick="showCategory('chaussures')">Chaussures</div>
-        </div>
-        <div id="chaussures" class="product-grid">
-            <div class="product"> <p>Chaussure Noire - 70 000 FC</p> <button class="buy-button" onclick="addToCart('Chaussure Noire', 70000)">Ajouter au panier</button></div>
-            <div class="product"> <p>Chaussure Blanche - 60 000 FC</p> <button class="buy-button" onclick="addToCart('Chaussure Blanche', 60000)">Ajouter au panier</button></div>
-        </div>
-    </div>
-    <div class="cart">
-        <h2>Panier</h2>
-        <ul id="cart-items" class="cart-items"></ul>
-        <p id="total-price">Total: 0 FC</p>
-        <button class="checkout-button" onclick="checkout()">Procéder au paiement</button>
-    </div>
-    <footer>
-        <p>Contact : dkikumba@gmail.com | +243818562531</p>
-    </footer>
     <script>
         let cart = [];
         function showCategory(category) {
@@ -78,6 +44,30 @@
             });
             document.getElementById('total-price').innerText = `Total: ${total} FC`;
         }
+        function checkout() {
+            let total = cart.reduce((sum, item) => sum + item.price, 0);
+            if (total === 0) {
+                alert('Votre panier est vide.');
+                return;
+            }
+            let mpesa = `https://wa.me/243818562531?text=Je%20veux%20payer%20${total}%20FC%20via%20M-Pesa`;
+            let airtel = `https://wa.me/243987995622?text=Je%20veux%20payer%20${total}%20FC%20via%20Airtel%20Money`;
+            window.location.href = confirm('Voulez-vous payer via M-Pesa ?') ? mpesa : airtel;
+        }
     </script>
+</head>
+<body>
+    <header>
+        <h1>BOUTIQUE DM</h1>
+    </header>
+    <div class="cart">
+        <h2>Panier</h2>
+        <ul id="cart-items" class="cart-items"></ul>
+        <p id="total-price">Total: 0 FC</p>
+        <button class="checkout-button" onclick="checkout()">Procéder au paiement</button>
+    </div>
+    <footer>
+        <p>Contact : dkikumba@gmail.com | <a href="https://wa.me/243818562531" target="_blank" style="color: gold; text-decoration: none;">Discuter sur WhatsApp</a></p>
+    </footer>
 </body>
 </html>
