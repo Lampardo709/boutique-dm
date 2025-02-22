@@ -55,9 +55,14 @@
         <div class="category-grid">
             <div class="category" onclick="showCategory('vetements')">Vêtements</div>
             <div class="category" onclick="showCategory('chaussures')">Chaussures</div>
-            <div class="category" onclick="showCategory('perruques')">Perruques</div>
-            <div class="category" onclick="showCategory('accessoires')">Accessoires</div>
-            <div class="category" onclick="showCategory('cosmetiques')">Cosmétiques</div>
+        </div>
+        <div id="vetements" class="product-grid">
+            <div class="product"> <p>Robe Élégante - 50 000 FC</p> <button class="buy-button" onclick="addToCart('Robe Élégante', 50000)">Ajouter au panier</button></div>
+            <div class="product"> <p>Costume Homme - 120 000 FC</p> <button class="buy-button" onclick="addToCart('Costume Homme', 120000)">Ajouter au panier</button></div>
+        </div>
+        <div id="chaussures" class="product-grid">
+            <div class="product"> <p>Chaussure Noire - 70 000 FC</p> <button class="buy-button" onclick="addToCart('Chaussure Noire', 70000)">Ajouter au panier</button></div>
+            <div class="product"> <p>Chaussure Blanche - 60 000 FC</p> <button class="buy-button" onclick="addToCart('Chaussure Blanche', 60000)">Ajouter au panier</button></div>
         </div>
     </div>
     <div class="cart">
