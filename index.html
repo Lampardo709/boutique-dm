@@ -32,14 +32,62 @@
             <div class="category" onclick="showCategory('cosmetiques')">Cosmétiques</div>
         </div>
     </div>
+
+    <div class="container" id="vetements" style="display:none;">
+        <h2>Vêtements</h2>
+        <p>Tenue Beige - 70 000 FC</p>
+        <p>Tenue Noire - 70 000 FC</p>
+        <p>Tenue Grise - 70 000 FC</p>
+        <p>Pantalon Cargo - 55 000 FC</p>
+    </div>
+
+    <div class="container" id="chaussures" style="display:none;">
+        <h2>Chaussures</h2>
+        <p>Chaussure Noire - 70 000 FC</p>
+        <p>Chaussure Blanche - 60 000 FC</p>
+        <p>Chaussure Luxe - 190 000 FC</p>
+    </div>
+
+    <div class="container" id="perruques" style="display:none;">
+        <h2>Perruques</h2>
+        <p>Perruque Brésilienne - 100 000 FC</p>
+        <p>Perruque Naturelle - 120 000 FC</p>
+    </div>
+
+    <div class="container" id="accessoires" style="display:none;">
+        <h2>Accessoires</h2>
+        <p>Montre Luxe - 50 000 FC</p>
+        <p>Bracelet Or - 30 000 FC</p>
+    </div>
+
+    <div class="container" id="cosmetiques" style="display:none;">
+        <h2>Cosmétiques</h2>
+        <p>Crème Hydratante - 20 000 FC</p>
+        <p>Parfum Homme - 35 000 FC</p>
+    </div>
+
     <div class="cart">
         <h2>Panier</h2>
         <ul id="cart-items" class="cart-items"></ul>
         <p id="total-price">Total: 0 FC</p>
         <button class="checkout-button" onclick="checkout()">Commander avec paiement à la livraison</button>
     </div>
+
     <footer>
         <p>Contact : dkikumba@gmail.com | <a href="https://wa.me/243818562531" target="_blank" style="color: gold; text-decoration: none;">Discuter sur WhatsApp</a></p>
     </footer>
+
+    <script>
+        function showCategory(category) {
+            let categories = ['vetements', 'chaussures', 'perruques', 'accessoires', 'cosmetiques'];
+            categories.forEach(cat => {
+                document.getElementById(cat).style.display = (cat === category) ? 'block' : 'none';
+            });
+        }
+
+        function checkout() {
+            alert('Votre commande a été validée. Vous serez contacté pour la livraison.');
+        }
+    </script>
 </body>
 </html>
