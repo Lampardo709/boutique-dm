@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="fr">
+<!DOCTYPE html>
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,41 +11,12 @@
         .category-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; padding: 20px; }
         .category { padding: 20px; background: gold; color: black; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); cursor: pointer; font-size: 18px; font-weight: bold; transition: 0.3s; transform: scale(1); }
         .category:hover { background: darkgoldenrod; color: white; transform: scale(1.1); transition: 0.3s; }
-        .product-grid { display: none; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; padding: 20px; justify-content: center; animation: slideIn 0.5s ease-in-out; }
-        .product { padding: 15px; background: white; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); transition: 0.3s; transform: scale(1); }
-        .product:hover { transform: scale(1.05); box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); transition: 0.3s; }
-        .buy-button, .remove-button, .checkout-button { margin-top: 10px; padding: 10px 15px; background: black; color: gold; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; transition: 0.3s; }
-        .buy-button:hover, .remove-button:hover, .checkout-button:hover { background: gold; color: black; transform: scale(1.1); }
         .cart { margin-top: 30px; padding: 20px; background: white; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); text-align: center; }
         .cart-items { list-style: none; padding: 0; }
         .cart-items li { margin: 10px 0; font-size: 16px; }
-        footer { margin-top: 30px; padding: 20px; background: black; color: white; text-align: center; font-size: 16px; }
+        .checkout-button { margin-top: 10px; padding: 10px 15px; background: black; color: gold; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; transition: 0.3s; }
+        .checkout-button:hover { background: gold; color: black; transform: scale(1.1); }
     </style>
-    <script>
-        let cart = [];
-        function showCategory(category) {
-            document.querySelectorAll('.product-grid').forEach(grid => grid.style.display = 'none');
-            document.getElementById(category).style.display = 'grid';
-        }
-        function addToCart(productName, price) {
-            cart.push({ name: productName, price: price });
-            updateCart();
-        }
-        function removeFromCart(index) {
-            cart.splice(index, 1);
-            updateCart();
-        }
-        function updateCart() {
-            let cartList = document.getElementById('cart-items');
-            cartList.innerHTML = '';
-            let total = 0;
-            cart.forEach((item, index) => {
-                cartList.innerHTML += `<li>${item.name} - ${item.price} FC <button class='remove-button' onclick='removeFromCart(${index})'>Retirer</button></li>`;
-                total += item.price;
-            });
-            document.getElementById('total-price').innerText = `Total: ${total} FC`;
-        }
-    </script>
 </head>
 <body>
     <header>
@@ -55,21 +27,16 @@
         <div class="category-grid">
             <div class="category" onclick="showCategory('vetements')">Vêtements</div>
             <div class="category" onclick="showCategory('chaussures')">Chaussures</div>
-        </div>
-        <div id="vetements" class="product-grid">
-            <div class="product"> <p>Robe Élégante - 50 000 FC</p> <button class="buy-button" onclick="addToCart('Robe Élégante', 50000)">Ajouter au panier</button></div>
-            <div class="product"> <p>Costume Homme - 120 000 FC</p> <button class="buy-button" onclick="addToCart('Costume Homme', 120000)">Ajouter au panier</button></div>
-        </div>
-        <div id="chaussures" class="product-grid">
-            <div class="product"> <p>Chaussure Noire - 70 000 FC</p> <button class="buy-button" onclick="addToCart('Chaussure Noire', 70000)">Ajouter au panier</button></div>
-            <div class="product"> <p>Chaussure Blanche - 60 000 FC</p> <button class="buy-button" onclick="addToCart('Chaussure Blanche', 60000)">Ajouter au panier</button></div>
+            <div class="category" onclick="showCategory('perruques')">Perruques</div>
+            <div class="category" onclick="showCategory('accessoires')">Accessoires</div>
+            <div class="category" onclick="showCategory('cosmetiques')">Cosmétiques</div>
         </div>
     </div>
     <div class="cart">
         <h2>Panier</h2>
         <ul id="cart-items" class="cart-items"></ul>
         <p id="total-price">Total: 0 FC</p>
-        <button class="checkout-button" onclick="checkout()">Procéder au paiement</button>
+        <button class="checkout-button" onclick="checkout()">Commander avec paiement à la livraison</button>
     </div>
     <footer>
         <p>Contact : dkikumba@gmail.com | <a href="https://wa.me/243818562531" target="_blank" style="color: gold; text-decoration: none;">Discuter sur WhatsApp</a></p>
