@@ -69,5 +69,15 @@
     <footer>
         <p>Contact : dkikumba@gmail.com | <a href="https://wa.me/243818562531" target="_blank" style="color: gold; text-decoration: none;">Discuter sur WhatsApp</a></p>
     </footer>
+
+    <script>
+        function showCategory(category) {
+            let categories = ['vetements', 'chaussures', 'accessoires', 'cosmetiques', 'perruques'];
+            categories.forEach(cat => {
+                document.getElementById(cat).style.display = "none";
+            });
+            document.getElementById(category).style.display = "block";
+        }
+    </script>
 </body>
 </html>
