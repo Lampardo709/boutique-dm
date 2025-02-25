@@ -6,12 +6,16 @@
     <title>BOUTIQUE DM</title>
     <style>
         body { font-family: Arial, sans-serif; background-color: #f5f5f5; margin: 0; padding: 0; overflow-x: hidden; }
-        header { background-color: black; color: gold; padding: 20px; font-size: 28px; text-align: center; font-weight: bold; transition: 0.5s; }
+        header { background-color: black; color: gold; padding: 20px; font-size: 28px; text-align: center; font-weight: bold; transition: 0.5s ease-in-out; animation: fadeInDown 1s ease-in-out; }
         .container { margin: 20px auto; max-width: 1200px; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); text-align: center; animation: fadeIn 1s ease-in-out; }
         .category-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; padding: 20px; }
-        .category { padding: 20px; background: gold; color: black; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); cursor: pointer; font-size: 18px; font-weight: bold; transition: 0.3s; transform: scale(1); }
-        .category:hover { background: darkgoldenrod; color: white; transform: scale(1.1); transition: 0.3s; }
-        img { width: 200px; height: auto; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); margin: 10px; }
+        .category { padding: 20px; background: gold; color: black; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); cursor: pointer; font-size: 18px; font-weight: bold; transition: 0.3s; transform: scale(1); animation: bounceIn 1s ease-in-out; }
+        .category:hover { background: darkgoldenrod; color: white; transform: scale(1.1) rotate(3deg); transition: 0.3s; }
+        img { width: 200px; height: auto; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); margin: 10px; transition: transform 0.3s ease-in-out; }
+        img:hover { transform: scale(1.1); }
+
+        .cart { text-align: center; margin-top: 20px; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); }
+
     </style>
 </head>
 <body>
@@ -31,36 +35,36 @@
 
     <div class="container" id="vetements" style="display:none;">
         <h2>Vêtements</h2>
-        <img src="A_stylish_beige_outfit_for_men,_consisting_of_a_bl.png" alt="Tenue Beige"><p>70 000 FC</p>
-        <img src="A_stylish_black_outfit_for_men,_featuring_a_blazer.png" alt="Tenue Noire"><p>70 000 FC</p>
-        <img src="A_stylish_gray_outfit_for_men,_including_a_blazer_.png" alt="Tenue Grise"><p>70 000 FC</p>
-        <img src="A_pair_of_stylish_black_cargo_pants_displayed_in_a.png" alt="Pantalon Cargo"><p>55 000 FC</p>
+        <img src="tenue_beige.png" alt="Tenue Beige"><p>70 000 FC</p>
+        <img src="tenue_noire.png" alt="Tenue Noire"><p>70 000 FC</p>
+        <img src="tenue_grise.png" alt="Tenue Grise"><p>70 000 FC</p>
+        <img src="pantalon_cargo.png" alt="Pantalon Cargo"><p>55 000 FC</p>
     </div>
 
     <div class="container" id="chaussures" style="display:none;">
         <h2>Chaussures</h2>
-        <img src="A_stylish_pair_of_black_high-top_shoes,_displayed_.png" alt="Chaussure Noire Montante"><p>70 000 FC</p>
-        <img src="A_stylish_white_sports_shoe_displayed_in_a_boutiqu.png" alt="Chaussure Blanche Sport"><p>60 000 FC</p>
-        <img src="A_luxury_black_leather_dress_shoe_displayed_on_a_w.png" alt="Chaussure Luxe Cuir Noir"><p>190 000 FC</p>
-    </div>
-
-    <div class="container" id="perruques" style="display:none;">
-        <h2>Perruques</h2>
-        <img src="Perruque_Bresilienne.png" alt="Perruque Brésilienne"><p>100 000 FC</p>
-        <img src="Perruque_Naturelle.png" alt="Perruque Naturelle"><p>120 000 FC</p>
+        <img src="chaussure_noire.png" alt="Chaussure Noire Montante"><p>70 000 FC</p>
+        <img src="chaussure_blanche.png" alt="Chaussure Blanche Sport"><p>60 000 FC</p>
+        <img src="chaussure_luxe.png" alt="Chaussure Luxe Cuir Noir"><p>190 000 FC</p>
     </div>
 
     <div class="container" id="accessoires" style="display:none;">
         <h2>Accessoires</h2>
-        <img src="A_luxurious_golden_wristwatch_displayed_on_a_bouti.png" alt="Montre Luxe Dorée"><p>50 000 FC</p>
-        <img src="A_stylish_pair_of_black_sunglasses_displayed_on_a_.png" alt="Lunettes de Soleil"><p>40 000 FC</p>
-        <img src="A_premium_black_leather_belt_displayed_in_a_boutiq.png" alt="Ceinture Cuir Noir"><p>35 000 FC</p>
+        <img src="montre_luxe.png" alt="Montre Luxe Dorée"><p>50 000 FC</p>
+        <img src="lunettes_soleil.png" alt="Lunettes de Soleil"><p>40 000 FC</p>
+        <img src="ceinture_cuir.png" alt="Ceinture Cuir Noir"><p>35 000 FC</p>
     </div>
 
-    <div class="container" id="cosmetiques" style="display:none;">
-        <h2>Cosmétiques</h2>
-        <img src="Parfum_Homme.png" alt="Parfum Homme"><p>35 000 FC</p>
-        <img src="Creme_Hydratante.png" alt="Crème Hydratante"><p>20 000 FC</p>
+    <div class="cart">
+        <h2>Panier</h2>
+        <p>Aucun article dans le panier</p>
+    </div>
+
+    <div class="container" id="paiement" style="text-align: center; margin-top: 20px;">
+        <h2>Paiement à la livraison</h2>
+        <p>Numéro M-Pesa : +243818562531</p>
+        <p>Numéro Airtel Money : +243987995622</p>
+        <button onclick="window.location.href='https://wa.me/243818562531'">Commander via WhatsApp</button>
     </div>
 
     <footer>
